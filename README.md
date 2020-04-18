@@ -11,7 +11,7 @@ CMD ["sh", "-c", "tail -f /dev/null"]
 ```
 
 
-![Docker Image CI](https://github.com/ismailyenigul/dockernettools/workflows/Docker%20Image%20CI/badge.svg)
+![Docker Image CI](https://github.com/ismailyenigul/dockernettools/workflows/Docker%20Image%20CI/badge.svg?branch=master)
 
 ## General Usage
 
