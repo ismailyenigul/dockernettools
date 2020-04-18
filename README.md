@@ -3,12 +3,12 @@
 
 # dockernettools
 
-Openshift compatible Docker image with connectivity tools(psql, mysql,  curl, ssh, telnet, nc, dig, swaks and more)
+Openshift and Kubernetes compatible Docker image with connectivity tools(psql, mysql,  curl, ssh, telnet, nc, dig, swaks and more)
 
 =======
 Based on alpine:edge
 
-CMD and USER set the following to run on Openshift or Kubernetes without providing command
+CMD and USER set the following to run on Openshift or Kubernetes without providing a command
 
 ```
 USER 1001
@@ -20,7 +20,7 @@ CMD ["sh", "-c", "tail -f /dev/null"]
 ## General Usage
 
 
-When using containers you might want to test the connectivity between the containers. Your application containers won't be having tools like curl, ping, psql client etc. So you can start a one-off container using this image and test your application.
+When using containers you might want to test the connectivity between the containers. Most of the  application containers won't be having tools to keep image size minimum. So you can start a container  using this image and test your application.
 
 To run a on Kubernetes:
 
@@ -37,7 +37,7 @@ $ docker run --rm -it ismailyenigul/dockernettools bash
 
 ## Available Commands
  * mysql, psql, redis-cli
- * curl, wget, http, nc, busybox-extras telnet, swaks
+ * curl, wget, http(httpie), nc, busybox-extras telnet, swaks
  * vim, nano
  * host, nslookup,dig 
  * jq
