@@ -26,13 +26,13 @@ When using containers you might want to test the connectivity between the contai
 To run a on Kubernetes:
 
 ```
-kubectl run --rm utils -it --generator=run-pod/v1 --image ismailyenigul/dockernettools bash
+kubectl run --rm utils -it --generator=run-pod/v1 --image yenigul/dockernettools bash
 ```
 
 To run on docker engine
 
 ```
-$ docker run --rm -it ismailyenigul/dockernettools bash
+$ docker run --rm -it yenigul/dockernettools bash
 
 ```
 
