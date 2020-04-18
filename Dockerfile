@@ -5,6 +5,7 @@ RUN apk add --update --no-cache  \
 		       --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 		       mysql-client \
 		       postgresql-client \
+ 		       redis \
  		       curl \
 		       bind-tools \
 		       wget \
