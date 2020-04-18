@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag yenigul/dockernettools:latest  
-    - name: Log into registry
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login https://index.docker.io/v1/ -u yenıgul --password-stdin
+    - name: Log into Docker Hub registry
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login https://index.docker.io/v1/ -u yenigul --password-stdin
     - name: Push image
       run: docker push yenigul/dockernettools:latest
