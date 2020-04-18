@@ -1,4 +1,8 @@
+
+![Docker Image CI](https://github.com/ismailyenigul/dockernettools/workflows/Docker%20Image%20CI/badge.svg?branch=master)
+
 # dockernettools
+
 Openshift compatible Docker image with connectivity tools(psql, mysql,  curl, ssh, telnet, nc, dig, swaks and more)
 
 Based on alpine:edge
@@ -11,7 +15,6 @@ CMD ["sh", "-c", "tail -f /dev/null"]
 ```
 
 
-![Docker Image CI](https://github.com/ismailyenigul/dockernettools/workflows/Docker%20Image%20CI/badge.svg?branch=master)
 
 ## General Usage
 
