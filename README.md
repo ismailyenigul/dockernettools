@@ -6,6 +6,7 @@
 Openshift and Kubernetes compatible Docker image with connectivity tools(psql, mysql,  curl, ssh, telnet, nc, dig, swaks and more)
 
 =======
+
 Based on alpine:edge
 
 CMD and USER set the following to run on Openshift or Kubernetes without providing a command
