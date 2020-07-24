@@ -19,6 +19,7 @@ RUN apk add --update --no-cache  \
 		       swaks\
 		       vim \
 		       nano  \
+		       mongodb \
 		       python3 py3-pip \
 		       bash && \
                        pip3 install --upgrade pip setuptools httpie && \
