@@ -22,12 +22,12 @@ RUN apk add --update --no-cache  \
 		       python3 py3-pip \
 		       bash && \
               pip3 install --upgrade pip setuptools httpie && \
- 		       rm -r /root/.cache
 
 RUN apk add --update --no-cache  \
-		       --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
+		       --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 			   yq \
-			   swaks 
+			   swaks \
+
 #Install awscli 2.0
 ENV GLIBC_VER=2.31-r0
 
@@ -54,7 +54,9 @@ RUN apk --no-cache add \
         binutils \
     && rm glibc-${GLIBC_VER}.apk \
     && rm glibc-bin-${GLIBC_VER}.apk \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
+	 rm -r /root/.cache
+
 
 RUN adduser -S user  -G root
 USER user
