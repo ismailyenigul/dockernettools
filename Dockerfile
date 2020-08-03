@@ -50,10 +50,10 @@ RUN apk --no-cache add \
         /usr/local/aws-cli/v2/*/dist/awscli/examples \
     && apk --no-cache del \
         binutils \
-        curl \
-    && rm glibc-${GLIBC_VER}.apk \
+	    && rm glibc-${GLIBC_VER}.apk \
     && rm glibc-bin-${GLIBC_VER}.apk \
     && rm -rf /var/cache/apk/*
+
 USER 1001
 CMD ["sh", "-c", "tail -f /dev/null"]
 		        	
