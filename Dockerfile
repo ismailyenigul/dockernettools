@@ -54,7 +54,7 @@ RUN apk --no-cache add \
     && rm glibc-bin-${GLIBC_VER}.apk \
     && rm -rf /var/cache/apk/*
 
-adduser -S user  -G root
+RUN adduser -S user  -G root
 USER user
 CMD ["sh", "-c", "tail -f /dev/null"]
 		        	
