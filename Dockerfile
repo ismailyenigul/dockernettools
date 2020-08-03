@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.11
 
 
 RUN apk add --update --no-cache  \
@@ -27,6 +27,9 @@ RUN apk add --update --no-cache  \
 		       --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 			   yq \
 			   swaks
+RUN apk add --update --no-cache  \
+		       --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/community \
+			  mongodb
 
 #Install awscli 2.0
 ENV GLIBC_VER=2.31-r0
