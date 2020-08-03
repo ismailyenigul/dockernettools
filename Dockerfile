@@ -21,7 +21,7 @@ RUN apk add --update --no-cache  \
 		       mongodb \
 		       python3 py3-pip \
 		       bash && \
-              pip3 install --upgrade pip setuptools httpie && \
+              pip3 install --upgrade pip setuptools httpie
 
 RUN apk add --update --no-cache  \
 		       --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
