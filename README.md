@@ -37,11 +37,12 @@ $ docker run --rm -it yenigul/dockernettools bash
 ```
 
 ## Available Commands
- * mysql, psql, redis-cli
+ * mysql, psql, redis-cli, mongo
+ * awscli 2.0
  * curl, wget, http(httpie), nc, busybox-extras telnet, swaks
  * vim, nano
  * host, nslookup,dig 
- * jq
+ * jq, yq
  * ssh, sftp
  * ip, ping
 
