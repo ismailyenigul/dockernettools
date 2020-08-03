@@ -16,7 +16,6 @@ RUN apk add --update --no-cache  \
 		       netcat-openbsd \
 		       net-tools \
 		       busybox-extras \
-		       swaks\
 		       vim \
 		       nano  \
 		       mongodb \
@@ -27,7 +26,8 @@ RUN apk add --update --no-cache  \
 
 RUN apk add --update --no-cache  \
 		       --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
-			   yq
+			   yq \
+			   swaks 
 #Install awscli 2.0
 ENV GLIBC_VER=2.31-r0
 
