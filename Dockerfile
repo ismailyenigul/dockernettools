@@ -13,6 +13,7 @@ RUN apk add --update --no-cache  \
 		       bind-tools \
 		       iputils \
 		       jq \
+			   yq \ 
 		       netcat-openbsd \
 		       net-tools \
 		       busybox-extras \
