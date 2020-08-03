@@ -53,13 +53,16 @@ RUN apk --no-cache add \
     && apk --no-cache del \
         binutils \
     && rm glibc-${GLIBC_VER}.apk \
-    && rm glibc-bin-${GLIBC_VER}.apk \
-    && rm -rf /var/cache/apk/* \
-	 rm -r /root/.cache
+    && rm glibc-bin-${GLIBC_VER}.apk
+    
 
 RUN apk add --update --no-cache  \
 		       --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/community \
+			   --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/main \
 			  mongodb yaml-cpp=0.6.2-r2 
+
+RUN  rm -rf /var/cache/apk/* \
+	 rm -r /root/.cache
 RUN adduser -S user  -G root
 USER user
 WORKDIR /home/user
