@@ -26,9 +26,7 @@ RUN apk add --update --no-cache  \
 		       --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 			   yq \
 			   swaks
-RUN apk add --update --no-cache  \
-		       --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/community \
-			  mongodb
+
 
 #Install awscli 2.0
 ENV GLIBC_VER=2.31-r0
@@ -59,7 +57,9 @@ RUN apk --no-cache add \
     && rm -rf /var/cache/apk/* \
 	 rm -r /root/.cache
 
-
+RUN apk add --update --no-cache  \
+		       --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/community \
+			  mongodb yaml-cpp=0.6.2-r2 
 RUN adduser -S user  -G root
 USER user
 WORKDIR /home/user
