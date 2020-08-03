@@ -2,7 +2,7 @@ FROM alpine:3.9
 
 
 RUN apk add --update --no-cache  \
-		       --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+		       --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
 		       mysql-client \
 		       postgresql-client \
  		       redis \
@@ -13,7 +13,6 @@ RUN apk add --update --no-cache  \
 		       bind-tools \
 		       iputils \
 		       jq \
-			   yq \ 
 		       netcat-openbsd \
 		       net-tools \
 		       busybox-extras \
@@ -26,6 +25,9 @@ RUN apk add --update --no-cache  \
               pip3 install --upgrade pip setuptools httpie && \
  		       rm -r /root/.cache
 
+RUN apk add --update --no-cache  \
+		       --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
+			   yq
 #Install awscli 2.0
 ENV GLIBC_VER=2.31-r0
 
