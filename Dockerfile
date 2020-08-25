@@ -17,6 +17,7 @@ RUN apk add --update --no-cache  \
 		       net-tools \
 		       busybox-extras \
 		       vim \
+		       git \
 		       nano  \
 		       python3 py3-pip \
 		       bash && \
