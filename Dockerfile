@@ -31,6 +31,8 @@ RUN apk add --update --no-cache  \
 		       --repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
 			   yq 
 
+RUN pip3 install shyaml
+
 #Install awscli 2.0
 ENV GLIBC_VER=2.31-r0
 
