@@ -19,18 +19,7 @@ spec:
         app.kubernetes.io/name: backend
         app.kubernetes.io/instance: backend
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: workertype
-                operator: In
-                values:
-                - services
-      securityContext:
-        fsGroup: 2000
       containers:
-        - name: backend
-          image: "937607034339.dkr.ecr.amazonaws.combackend-prd:afd40c131de7025264242de61d205ad4b3a348f4"
+       - name: backend
+         image: "937607034339.dkr.ecr.amazonaws.combackend-prd:afd40c131de7025264242de61d205ad4b3a348f4"
      
