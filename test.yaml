@@ -1,25 +1,147 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
-  labels:
-    app.kubernetes.io/name: backend
-    app.kubernetes.io/instance: backend
-    app.kubernetes.io/managed-by: Helm
   annotations:
-    secret.reloader.stakater.com/reload: backend,firebase
+    deployment.kubernetes.io/revision: "1"
+    secret.reloader.stakater.com/reload: realtime,firebase-realtime
+  creationTimestamp: "2020-04-01T14:52:18Z"
+  generation: 5299
+  labels:
+    app.kubernetes.io/instance: realtime
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: realtime
+    app.kubernetes.io/version: latest
+    helm.sh/chart: realtime-latest
+  name: realtime
+  namespace: storyfire
+  resourceVersion: "230321578"
+  selfLink: /apis/apps/v1/namespaces/storyfire/deployments/realtime
+  uid: 628f24b4-7428-11ea-8391-02486fccb464
 spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app.kubernetes.io/name: backend
-      app.kubernetes.io/instance: backend
+      app.kubernetes.io/instance: realtime
+      app.kubernetes.io/name: realtime
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/restartedAt: "2021-01-19T16:05:25-03:00"
+      creationTimestamp: null
       labels:
-        app.kubernetes.io/name: backend
-        app.kubernetes.io/instance: backend
+        app.kubernetes.io/instance: realtime
+        app.kubernetes.io/name: realtime
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: workertype
+                operator: In
+                values:
+                - services
       containers:
-       - name: backend
-         image: "937607034339.dkr.ecr.us-west-2.amazonaws.com/storyfire-backend-prd:latest"
-     
+      - env:
+        - name: DD_SERVICE_NAME
+          value: storyfire-realtime
+        - name: ENABLE_TRACE
+          value: "true"
+        - name: DD_LOGS_ENABLED
+          value: "true"
+        - name: KUBE_DEPLOYMENT_NAME
+          value: realtime
+        - name: KUBE_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: KUBE_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: KUBE_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: PORT
+          value: "8080"
+        - name: STAKATER_REALTIME_SECRET
+          value: fcaa09346091ae53e39b44a02af7b75736aa105a
+        - name: STAKATER_FIREBASE_REALTIME_SECRET
+          value: 8a1f6dbf04f6344d9af071af876c46f14a1f7cef
+        envFrom:
+        - secretRef:
+            name: realtime
+        image: 937607034339.dkr.ecr.us-west-2.amazonaws.com/storyfire-backend-prd:latest
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 4
+          httpGet:
+            path: /app/ping
+            port: http
+            scheme: HTTP
+          periodSeconds: 15
+          successThreshold: 1
+          timeoutSeconds: 10
+        name: realtime
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 2
+          httpGet:
+            path: /app/ping
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 15
+          successThreshold: 1
+          timeoutSeconds: 10
+        resources:
+          limits:
+            cpu: 900m
+            memory: 768Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp
+        - mountPath: /app/dist/config/keys/
+          name: firebase-realtime
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 2000
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: tmp
+      - name: firebase-realtime
+        secret:
+          defaultMode: 420
+          secretName: firebase-realtime
